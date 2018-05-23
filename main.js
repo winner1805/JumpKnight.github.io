@@ -14,7 +14,6 @@ var mainState = {
         
         game.load.audio('bgm', 'assets/BGM.mp3');
 
-
         
     },
 
@@ -24,7 +23,7 @@ var mainState = {
         
         //Add background image
         this.tileSprite = game.add.tileSprite(0, 0, 400, 600, 'bg' );
-        //this.tileSprite.autoScroll(50,-50);
+        
         // Add background music
         bgm = game.add.audio('bgm',0.5,true);
         bgm.play();
@@ -50,7 +49,7 @@ var mainState = {
         spaceKey.onDown.add(this.jump, this);
 
         this.jumpSound = game.add.audio('jump'); //add sound for 'jump'
-        this.coinSound = game.add.audio('coin');; //add sound for 'coin'
+        this.coinSound = game.add.audio('coin'); //add sound for 'coin'
 
         // Create an empty group
         this.walls = game.add.group(); 
