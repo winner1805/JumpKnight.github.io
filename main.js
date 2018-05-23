@@ -70,7 +70,7 @@ var mainState = {
         { font: "12px Arial", fill: "#ffffff", align: "center" });
 
         var credit = this.game.add.text(234, 570,
-            'Spacebar=Jump                                     Jump Knight © Phan Đức Anh ' ,
+            'Spacebar=Jump                                     Jump Knight © Phan Duc Anh ' ,
             { font: "11px Arial", fill: "#ffffff", align: "center" })
 
         // Move the anchor to the left and downward
