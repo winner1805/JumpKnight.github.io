@@ -27,6 +27,7 @@ var mainState = {
         // Add background music
         bgm = game.add.audio('bgm',0.5,true);
         bgm.play();
+        
         // Change the background color of the game to blue
         game.stage.backgroundColor = '#58ACFA';
 
@@ -69,7 +70,7 @@ var mainState = {
         { font: "12px Arial", fill: "#ffffff", align: "center" });
 
         var credit = this.game.add.text(234, 570,
-            'Jump Knight © Phan Đức Anh ' ,
+            'Spacebar=Jump                                     Jump Knight © Phan Đức Anh ' ,
             { font: "11px Arial", fill: "#ffffff", align: "center" })
 
         // Move the anchor to the left and downward
