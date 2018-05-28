@@ -2,7 +2,7 @@
 var mainState = {
     preload: function() { 
         // This function will be executed at the beginning     
-        // That's where we load the images and sounds 
+        // Load the images and sounds 
         game.load.image('bg','assets/bg.jpg')
 
         game.load.image('knight', 'assets/knight.png');
@@ -42,7 +42,7 @@ var mainState = {
         game.physics.arcade.enable(this.knight);
 
         // Add gravity to the knight to make it fall
-        this.knight.body.gravity.y = 1000;  
+        this.knight.body.gravity.y = 900;  
 
         // Call the 'jump' function when the spacekey is hit
         var spaceKey = game.input.keyboard.addKey(
@@ -56,8 +56,8 @@ var mainState = {
         this.walls = game.add.group(); 
         this.coins = game.add.group(); 
 
-        this.timer = game.time.events.loop(1500, this.addRowOfCoins, this);
-        this.timer = game.time.events.loop(1500, this.addRowOfwalls, this);
+        this.timer = game.time.events.loop(1600, this.addRowOfCoins, this);
+        this.timer = game.time.events.loop(1600, this.addRowOfwalls, this);
         
         //Creat score, highscore, credit
         var highscore, highscoreText;
@@ -86,23 +86,22 @@ var mainState = {
    
 
     update: function() {
-        // This function is called 60 times per second    
-        // It contains the game's logic
-        // If the knight is out of the screen (too high or too low)
-        // Call the 'restartGame' function
-        if (this.knight.y < 0 || this.knight.y > 490)
+        // this function is called 60 times/s. It contains the game's logic
+        // knight is out of the screen (too high or too low) => the restartGame(). 
+        
+        if (this.knight.y < 0 || this.knight.y > 500)
         this.restartGame();   
 
         game.physics.arcade.overlap(
             this.knight, this.walls, this.restartGame, null, this);
 
-        if (this.knight.angle < 20)
+        if (this.knight.angle < 24)
         this.knight.angle += 1; 
 
         game.physics.arcade.overlap(
             this.knight, this.walls, this.hitwall, null, this);
 
-        // Call the 'takeCoin' function when the knight takes a coin
+        // knight takes a coin => takeCoin()
         game.physics.arcade.overlap(this.knight, this.coins, this.takeCoin, null, this);
 
         //Highscore code
@@ -120,13 +119,13 @@ var mainState = {
         // Create an animation on the knight
         var animation = game.add.tween(this.knight);
 
-        // Change the angle of the knight to -20° in 100 milliseconds
-        animation.to({angle: -20}, 100);
+        // Change the angle of the knight to -18° in 120 milliseconds
+        animation.to({angle: -18}, 120);
 
         // And start the animation
         animation.start(); 
 
-        //game.add.tween(this.knight).to({angle: -20}, 100).start(); 
+        //game.add.tween(this.knight).to({angle: -18}, 120).start(); 
 
         this.jumpSound.play(); 
     },
@@ -158,13 +157,9 @@ var mainState = {
         },
     
     addRowOfCoins: function() {
-        // Randomly pick a number between 1 and 5
-        // This will be the hole position
         var hole2 = Math.floor(Math.random() * 5) + 1;
         
-        // Add the 6 walls 
-        // With one big hole at position 'hole' and 'hole + 1'
-            for (var i = 0; i < 12; i++)
+           for (var i = 0; i < 12; i++)
                 if (i != hole2 && i != hole2 + 2 && i != hole2 + 4  && i != hole2 + 6 && i != hole2 + 8 ) 
                     this.addCoin(350, i * 60 + 10); 
                     
