@@ -21,30 +21,26 @@ var mainState = {
         // This function is called after the preload function     
         // Here we set up the game, display sprites, etc.
         
-        //Add background image
+        // Add background image
         this.tileSprite = game.add.tileSprite(0, 0, 400, 600, 'bg' );
         
         // Add background music
         bgm = game.add.audio('bgm',0.5,true);
         bgm.play();
         
-        // Change the background color of the game to blue
-        game.stage.backgroundColor = '#58ACFA';
-
         // Set the physics system
         game.physics.startSystem(Phaser.Physics.ARCADE);
 
         // Display the knight at the position x=100 and y=245
         this.knight = game.add.sprite(100, 245, 'knight');
 
-        // Add physics to the knight
-        // Needed for: movements, gravity, collisions, etc.
+        // Add physics to the knight. Needed for: movements, gravity, collisions, etc.
         game.physics.arcade.enable(this.knight);
 
-        // Add gravity to the knight to make it fall
+        // Add gravity to the knight
         this.knight.body.gravity.y = 900;  
 
-        // Call the 'jump' function when the spacekey is hit
+        // spacekey is hit => jump()
         var spaceKey = game.input.keyboard.addKey(
                     Phaser.Keyboard.SPACEBAR);
         spaceKey.onDown.add(this.jump, this);
@@ -73,7 +69,7 @@ var mainState = {
             'Spacebar = Jump                                    Jump Knight © Phan Đức Anh ' ,
             { font: "11px Arial", fill: "#ffffff", align: "center" })
 
-        // Move the anchor to the left and downward
+        // move the anchor to the left and downward
         this.knight.anchor.setTo(-0.2, 0.5); 
 
     },
@@ -111,7 +107,7 @@ var mainState = {
 
     },
 
-    // Make the knight jump 
+    // the jump of knight
     jump: function() {
         // Add a vertical velocity to the knight
         this.knight.body.velocity.y = -360;
